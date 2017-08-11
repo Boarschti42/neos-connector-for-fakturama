@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: fakturamaC\n"
+"POT-Creation-Date: 2016-06-10 11:30+0100\n"
+"PO-Revision-Date: 2016-06-12 11:36+0100\n"
+"Last-Translator: Kevin Bonner <info@neosuniverse.de>\n"
+"Language-Team: Kevin Bonner <fakturama@neosuniverse.de>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __:1,2c;gettext;gettext_noop;_e:1,2c;_x:1,3c\n"
+"X-Poedit-Basepath: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/"
+"fakturamaconnector/\n"
+"X-Poedit-SearchPath-0: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/"
+"fakturamaconnector\n"
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:41
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:67
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:129
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:155
+msgctxt "fakturamac"
+msgid "Fakturama Connector"
+msgstr "Fakturama Connector"
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:42
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:130
+msgctxt "fakturamac"
+msgid "Fakturama"
+msgstr "Fakturama"
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:71
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:163
+msgctxt "fakturamac"
+msgid "Information"
+msgstr ""
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:72
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:164
+msgctxt "fakturamac"
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:105
+msgctxt "fakturamac"
+msgid "My Custom Settings"
+msgstr ""
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings_old.php:150
+msgctxt "fakturamac"
+msgid "Enter your settings below:"
+msgstr ""
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/index.php:57
+msgctxt "woocommerce"
+msgid "Order Notes"
+msgstr ""
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/index.php:58
+msgctxt "woocommerce"
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr ""
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:37
+msgctxt "fakturamac"
+msgid "WooCommerce Key"
+msgstr "WooCommerce Key"
+
+#: /home/xoxoxo/IdeaProjects/wpplug/wp-content/plugins/fakturamaconnector/admin_settings.php:44
+msgctxt "fakturamac"
+msgid "WooCommerce Secret"
+msgstr "WooCommerce Secret"
+
+#~ msgid "Page Title"
+#~ msgstr "Seiten Titel"
+
+#~ msgid "stockyP"
+#~ msgstr "stockyP"
+
+#~ msgid "Download"
+#~ msgstr "Herunterladen"
+
+#~ msgid "Page"
+#~ msgstr "Seite"
+
+#~ msgid "Next"
+#~ msgstr "Weiter"
+
+#~ msgid "Previous"
+#~ msgstr "Zurück"
+
+#~ msgid "Search"
+#~ msgstr "Suchen"
+
+#~ msgid "Items per Page"
+#~ msgstr "Ergebnisse pro Seite"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Videos"
+#~ msgstr "Videos"
+
+#~ msgid "Photos"
+#~ msgstr "Fotos"
+
+#~ msgid "All"
+#~ msgstr "Alle"
+
+#~ msgid "Platform"
+#~ msgstr "Plattform"
+
+#~ msgid "Go"
+#~ msgstr "Los"
+
+#~ msgid "Writable"
+#~ msgstr "Beschreibbar"
+
+#~ msgid "Can not create a Folder!"
+#~ msgstr "Verzeichnis kann nicht erstellt werden"
+
+#~ msgid "Not writable!"
+#~ msgstr "Nicht beschreibbar"
+
+#~ msgid "Display Options"
+#~ msgstr "Optionen"
+
+#~ msgid "Header"
+#~ msgstr "Kopfzeile"
+
+#~ msgid "Activate this setting to display the header."
+#~ msgstr "Zeige Header"
+
+#~ msgid "Content"
+#~ msgstr "Hauptinhalt"
+
+#~ msgid "Activate this setting to display the content."
+#~ msgstr "Aktiviere diese Einstellung um den Hauptinhalt anzuzeigen"
+
+#~ msgid "Footer"
+#~ msgstr "Footer"
+
+#~ msgid "Activate this setting to display the footer."
+#~ msgstr "Aktiviere diese Einstellung zum anzeigen des Footers"
+
+#~ msgid "Select which areas of content you wish to display."
+#~ msgstr "Wähle aus welche bereich du Anzeigen möchtest"
+
+#~ msgid "General"
+#~ msgstr "Allgemein"
