@@ -1,0 +1,204 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-07-23 14:26+0200\n"
+"PO-Revision-Date: 2017-07-23 14:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.13\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: neosconnectorforfakturama-admin.php:185
+msgid "Debug"
+msgstr "Debug"
+
+#: neosconnectorforfakturama-admin.php:186
+msgid "In debug mode, the object is output on the Ajax page."
+msgstr "Im Debug Modus wird das XML Objekt auf der Ajax-Seite aus gegeben."
+
+#: neosconnectorforfakturama-admin.php:189
+msgid "On"
+msgstr "An"
+
+#: neosconnectorforfakturama-admin.php:189
+msgid "Off"
+msgstr "Aus"
+
+#: neosconnectorforfakturama-admin.php:193
+msgid "Timezone"
+msgstr "Zeitzone"
+
+#: neosconnectorforfakturama-admin.php:261
+msgid "Neos Connector for Fakturama"
+msgstr "Neos Connector for Fakturama"
+
+#: neosconnectorforfakturama-admin.php:262
+msgid "Fakturama"
+msgstr "Fakturama"
+
+#: neosconnectorforfakturama-admin.php:296
+msgid "Information"
+msgstr "Information"
+
+#: neosconnectorforfakturama-admin.php:297
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: neosconnectorforfakturama-admin.php:298
+msgid "Help"
+msgstr "Hilfe"
+
+#: neosconnectorforfakturama-admin.php:316
+msgid "Save"
+msgstr "Speichern"
+
+#: neosconnectorforfakturama-admin.php:317
+msgid "Reset to default values"
+msgstr "Standartwerte wiederherstellen"
+
+#: neosconnectorforfakturama-admin.php:338
+msgid "Fakturama Connector set up"
+msgstr "Fakturama Connector einrichten"
+
+#: neosconnectorforfakturama-admin.php:340
+msgid "Step 1:"
+msgstr "Schritt 1:"
+
+#: neosconnectorforfakturama-admin.php:340
+msgid "Insert your username and password into Fakturama"
+msgstr "Füge dein Benutzername und Passwort in Fakturama ein"
+
+#: neosconnectorforfakturama-admin.php:340
+msgid "File -> Settings -> Webshop"
+msgstr "Datei -> Einstellungen -> Webshop"
+
+#: neosconnectorforfakturama-admin.php:341
+msgid "Step 2:"
+msgstr "Schritt 2:"
+
+#: neosconnectorforfakturama-admin.php:341
+msgid "Insert the URL below in Fakturama"
+msgstr "Füge die untenstehende URL in Fakturama ein"
+
+#: neosconnectorforfakturama-admin.php:341
+msgid "File -> Settings -> Webshop -> Webshop URL"
+msgstr "Datei -> Einstellungen -> Webshop -> Webshop URL"
+
+#: neosconnectorforfakturama-admin.php:344
+msgid "That's it!"
+msgstr "Das wars!"
+
+#: neosconnectorforfakturama-admin.php:353
+msgid "If you want to support my work."
+msgstr "Wenn du meine Arbeit unterstützen möchtest"
+
+#: neosconnectorforfakturama-admin.php:366
+msgid "Frequently Asked Questions"
+msgstr "Häufige Fragen"
+
+#: neosconnectorforfakturama-admin.php:367
+msgid "A Faq has been set up on my website for the Fakturama connector."
+msgstr ""
+"Eine FAQ mit den Häufigsten Fragen wurde auf meiner Webseite eingerichtet."
+
+#: neosconnectorforfakturama-admin.php:368
+msgid "Click here for FAQ"
+msgstr "Hier geht es zur FAQ"
+
+#: neosconnectorforfakturama-admin.php:370
+msgid "You could not solve your problem?"
+msgstr "Du konntest nicht dein Problem lösen?"
+
+#: neosconnectorforfakturama-admin.php:371
+msgid "You can also find help in the official Forum of"
+msgstr "Du findest auch Hilfe im offiziellen Forum von"
+
+#: neosconnectorforfakturama-admin.php:373
+msgid "More information is available on my Website:"
+msgstr "Mehr Informationen sind auf meiner Webseite verfügbar:"
+
+#: neosconnectorforfakturama-admin.php:376
+msgid "If you could not solve your problem with the above help, write me!"
+msgstr ""
+"Wenn du mit der oben gennanten Hilfe dein Problem nicht lösen konntest, "
+"schreibe mir!"
+
+#: neosconnectorforfakturama-admin.php:378
+msgid ""
+"Note: 1) Exact problem description 2) With screenshot 3)Webshopimport.log by "
+"Fakturama"
+msgstr ""
+"Anmerkung: 1) Genaue Problem Beschreibung 2) Mit Bildschirmfoto 3) "
+"Webshopimport.log von Fakturama"
+
+#: neosconnectorforfakturama-admin.php:379
+msgid "2,3 Please in the E-mail as attachment."
+msgstr "2,3 Bitte als Anhang in der Email mit senden."
+
+#: neosconnectorforfakturama-admin.php:381
+msgid ""
+"In the forum I am not active, therefore should not solve the problem please "
+"write."
+msgstr ""
+"Ich bin im Forum nicht aktiv, sollte dein Problem nicht gelöst sein schreibe "
+"mir."
+
+#: neosconnectorforfakturama-admin.php:382
+msgid "If you want to help with translation then write me."
+msgstr "Wenn du mir beim übersetzen helfen willst dann schreibe mir."
+
+#: neosconnectorforfakturama-notices.php:38
+msgid "Do you like Neos Connector for Fakturama?"
+msgstr "Gefällt dir Neos Connector for Fakturama?"
+
+#: neosconnectorforfakturama-notices.php:40
+msgid ""
+"If you like Neos Connector for Fakturama and our Plugin does a good job it "
+"would be great if you would write a review about Neos Connector for "
+"Fakturama on WordPress.org. Thank you for your support!"
+msgstr ""
+"Wenn dir Neos Connector for Fakturama gefällt und unser Plugin seine Arbeit "
+"gut macht, wäre es super wenn du eine Rezension über Neos Connector for "
+"Fakturama auf Wordpress.org schreiben würdest. Danke für deine Unterstützung!"
+
+#: neosconnectorforfakturama-notices.php:43
+msgid "Write review now"
+msgstr "Schreibe jetzt eine Rezension"
+
+#: neosconnectorforfakturama-notices.php:44
+msgid "Found Bugs?"
+msgstr "Fehler gefunden?"
+
+#: neosconnectorforfakturama-notices.php:47
+msgid "Hide this notice"
+msgstr "Anmerkung nicht mehr anzeigen"
+
+#~ msgid "You can also find help in the official forum of"
+#~ msgstr "Du findest auch Hilfe im offiziellen Forum von"
+
+#~ msgid "More information is available on my website:"
+#~ msgstr "Mehr Informationen sind auf meiner Webseite verfügbar:"
+
+#~ msgid "Order Notes"
+#~ msgstr "Bestellung Anmerkungen"
+
+#~ msgid "If you could not solve your problem with the above help, write me"
+#~ msgstr ""
+#~ "Wenn du mit der oben gennanten Hilfe dein Problem nicht lösen konntest, "
+#~ "schreibe mir!"
+
+#~ msgid "2,3 Please in the E-mail as attachment"
+#~ msgstr "2,3 Bitte als Anhang in der Email mit senden"
+
+#~ msgid "More information is available on my website"
+#~ msgstr "Weitere Informationen sind auf meiner Webseite verfügbar:"
+
+#~ msgid "Do you like "
+#~ msgstr "Gefällt dir"

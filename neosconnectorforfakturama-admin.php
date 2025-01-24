@@ -5,6 +5,11 @@
  * Date: 16.05.16
  * Time: 17:56
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
+
 
 class NeosFaktura_Settings_Page {
 
@@ -14,7 +19,6 @@ class NeosFaktura_Settings_Page {
     private $options;
     private $optionsp;
 
-    private $plugin = 'fakturamac';
 
 
     /**
@@ -22,13 +26,10 @@ class NeosFaktura_Settings_Page {
      */
     public function __construct() {
         
-        if ( ! defined('ABSPATH') ) {
-            return;
-        }
+
+        #load_plugin_textdomain( 'neosconnectorforfakturama', false, dirname(plugin_basename(__FILE__)).'/lang/' );
         
-        load_plugin_textdomain( 'fakturamac', false, dirname(plugin_basename(__FILE__)).'/lang/' );
-        
-        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+        add_action( 'admin_menu', array( $this, 'ncff_add_plugin_page' ) );
         //add_action( 'admin_init', array( $this, 'page_init' ) );
 
         $timezones =
@@ -181,19 +182,19 @@ class NeosFaktura_Settings_Page {
         
 
         $this->optionsp = array(
-            array("name" => "Debug",
-                "desc" => "Im Debug Modus wird auf der Ajax-Seite das Object ausgegeben.",
-                "id" => "NeosFaktura_debug",
+            array("name" => __('Debug', NCFF_TEXTDOMAIN),
+                "desc" => __('In debug mode, the object is output on the Ajax page.', NCFF_TEXTDOMAIN),
+                "id" => NCFF_TEXTDOMAIN."_debug",
                 "type" => "select",
-                "options" => array('true'=>'An', 'false'=>'Aus'),
+                "options" => array('true'=> __('On', NCFF_TEXTDOMAIN), 'false'=> __('Off', NCFF_TEXTDOMAIN)),
                 "std" => "false"
             ),
 
-            array("name" => __('Timezone', 'fakturamac'),
+            array("name" => __('Timezone', NCFF_TEXTDOMAIN),
                 "desc" => "",
-                "id" => "NeosFaktura_timezone",
+                "id" => NCFF_TEXTDOMAIN."_timezone",
                 "type" => "select",
-                "options" => $timezones,
+                "options" => array_flip($timezones),
                 "std" => "(GMT+01:00) Berlin"
             ),
 
@@ -208,10 +209,12 @@ class NeosFaktura_Settings_Page {
 
 
 
+
+
     /**
      * Add options page
      */
-    public function add_plugin_page()
+    public function ncff_add_plugin_page()
     {
 
 
@@ -255,18 +258,18 @@ class NeosFaktura_Settings_Page {
 
         // This page will be under "Settings"
         add_options_page(
-            __( 'Neos Connector for Fakturama', 'fakturamac' ),
-            __( 'Fakturama', 'fakturamac' ),
+            __( 'Neos Connector for Fakturama', NCFF_TEXTDOMAIN ),
+            __( 'Fakturama', NCFF_TEXTDOMAIN ),
             'manage_options',
-            $this->plugin,
-            array( $this, 'create_admin_page' )
+            NCFF_TEXTDOMAIN,
+            array( $this, 'ncff_create_admin_page' )
         );
     }
 
     /**
      * Options page callback
      */
-    public function create_admin_page()
+    public function ncff_create_admin_page()
     {
         $active_tab = '';
          if( isset( $_GET[ 'tab' ] ) ) {
@@ -278,12 +281,11 @@ class NeosFaktura_Settings_Page {
 
         
         $this->options = get_option( 'fakturama_setting' );
-        $plugin_data = get_plugin_data(__DIR__.'/neosconnectorforfakturama.php');
         #var_dump($plugin_data);
         ?>
         <div class="wrap">
             
-            <h2><?php echo esc_html($plugin_data['Name'] . " Version " . $plugin_data['Version']); ?></h2>
+            <h2><?php echo esc_html(NCFF_PLUGINDATA['Name'] . " Version " . NCFF_PLUGINDATA['Version']); ?></h2>
             <?php settings_errors();
 
             
@@ -291,9 +293,9 @@ class NeosFaktura_Settings_Page {
             ?>
 
             <h2 class="nav-tab-wrapper">
-                <a href="?page=<?php echo $this->plugin ?>&tab=info_options" class="nav-tab <?php echo $active_tab == 'info_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Information', 'fakturamac' ); ?></a>
-                <a href="?page=<?php echo $this->plugin ?>&tab=settings_options" class="nav-tab <?php echo $active_tab == 'settings_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Settings', 'fakturamac' ); ?></a>
-                <a href="?page=<?php echo $this->plugin ?>&tab=help_options" class="nav-tab <?php echo $active_tab == 'help_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Help', 'fakturamac' ); ?></a>
+                <a href="?page=<?php echo NCFF_TEXTDOMAIN ?>&tab=info_options" class="nav-tab <?php echo $active_tab == 'info_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Information', NCFF_TEXTDOMAIN ); ?></a>
+                <a href="?page=<?php echo NCFF_TEXTDOMAIN ?>&tab=settings_options" class="nav-tab <?php echo $active_tab == 'settings_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Settings', NCFF_TEXTDOMAIN ); ?></a>
+                <a href="?page=<?php echo NCFF_TEXTDOMAIN ?>&tab=help_options" class="nav-tab <?php echo $active_tab == 'help_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Help', NCFF_TEXTDOMAIN ); ?></a>
 
 
             </h2>
@@ -304,15 +306,15 @@ class NeosFaktura_Settings_Page {
 
                     echo '<form method="post" action=""  name="form">';
 
-                    $this->create_form($this->optionsp);
+                    $this->ncff_create_form($this->optionsp);
 
 
                     ?>
 
                     <br>
                     <br>
-                    <input name="save" type="button" value="Save" class="button button-primary" onclick="submit_form(this)" />
-                    <input name="reset_all" type="button" value="Reset to default values" class="button" onclick="submit_form(this)" />
+                    <input name="save" type="button" value="<?php _e( 'Save', NCFF_TEXTDOMAIN ); ?>" class="button button-primary" onclick="submit_form(this)" />
+                    <input name="reset_all" type="button" value="<?php _e( 'Reset to default values', NCFF_TEXTDOMAIN ); ?>" class="button" onclick="submit_form(this)" />
                     <input type="hidden" name="formaction" value="default" />
 
 
@@ -332,56 +334,55 @@ class NeosFaktura_Settings_Page {
 
 
                 }else if ($active_tab == 'info_options'){
-                    echo '<h2>Fakturama Connector einrichten</h2>';
+                    ?>
+                    <h2><?php _e('Fakturama Connector set up', NCFF_TEXTDOMAIN);?></h2>
                   
-                    echo '<p><b>Schritt 1:</b> WP Benutzername und Passwort in Fakturama einf&uuml;gen <br>Datei -> Einstellungen -> Webshop</p>';
-                    echo '<p><b>Schritt 2:</b> Die unten stehende URL in Fakturama einf&uuml;gen <br>Datei -> Einstellungen -> Webshop -> Webshop URL</p>';
+                    <p><b><?php _e('Step 1:', NCFF_TEXTDOMAIN);?></b> <?php _e('Insert your username and password into Fakturama', NCFF_TEXTDOMAIN);?> <br><?php _e('File -> Settings -> Webshop', NCFF_TEXTDOMAIN);?></p>
+                    <p><b><?php _e('Step 2:', NCFF_TEXTDOMAIN);?></b> <?php _e('Insert the URL below in Fakturama', NCFF_TEXTDOMAIN);?><br><?php _e('File -> Settings -> Webshop -> Webshop URL', NCFF_TEXTDOMAIN);?></p>
 
-                    echo '<b>URL: '.get_bloginfo('url')."/wp-admin/admin-ajax.php?do=fakturama <br></b>";                  
-                    echo '<p>Das wars!</p>';
+                    <b>URL: "<?php echo get_bloginfo('url'); ?>/wp-admin/admin-ajax.php?do=fakturama" <br></b>
+                    <p><?php _e('That\'s it!', NCFF_TEXTDOMAIN);?></p>
                   
-                    echo '<p>Entwickelt von '.esc_html($plugin_data['AuthorName']).'</p>';
+                    <?php #echo '<p>Entwickelt von '.esc_html($plugin_data['AuthorName']).'</p>';?>
                     
 
-
-
-
-
-                    echo '<h2>Falls du meine Arbeit unterstützen möchtest.</h2>';
-                    echo '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="7B7XZ227HN5GC">
-                            <input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
-                            <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
-                            </form>
-                            ';
-
+                    <?php
                 }
                 else if ($active_tab == 'help_options'){
+                    ?>
 
-                    echo '<h2>H&auml;fige Fragen?</h2>';
-                    echo '<p>Auf meiner Webseite wurde f&uuml;r den Fakturama-Connector eine Faq eingerichtet. Bitte zuerst dort nach lesen evtl. kann das Problem schon vorher gel&ouml;&szlig;t
-                            werden. <br /><a target="_blank" href="'. esc_url($plugin_data['PluginURI']).'/neos-connector-for-fakturama-faq/">Hier geht es zur FAQ</a></p>';
+                    <h2><?php _e('Frequently Asked Questions', NCFF_TEXTDOMAIN);?></h2>
+                    <p><?php _e('A Faq has been set up on my website for the Fakturama connector.', NCFF_TEXTDOMAIN);?>
+                        <br /><a target="_blank" href="<?php echo esc_url(NCFF_PLUGINDATA['PluginURI'])?>/neos-connector-for-fakturama-faq/"><?php _e('Click here for FAQ', NCFF_TEXTDOMAIN);?></a></p>
 
-                    echo '<h2>Fehler, Probleme oder du möchtest das Plugin &Uuml;bersetzen</h2>';
-                    echo '<p>Weitere Informationen gibt es auf meiner Webseite <a target="_blank" href="'. esc_url($plugin_data['PluginURI']).'">'.esc_html($plugin_data['PluginURI']).'</a></p>';
-                    echo '<p>Schreibe mir an <b>fakturama@neosuniverse.de</b><br>Am besten mit möglichst genauer Fehlerbeschreibung und evtl. mit Screenshots.</p>';
-                    echo '<p>Hilfe findest du auch im Offizillen Forum von <a target="_blank" href="http://forum.fakturama.info/index.php" >Fakturama</a></p>';
+                    <h2><?php _e('You could not solve your problem?', NCFF_TEXTDOMAIN);?></h2>
+                    <p><?php _e('You can also find help in the official Forum of', NCFF_TEXTDOMAIN);?> <a target="_blank" href="http://forum.fakturama.info/index.php" >Fakturama</a></p>
 
-                    echo '<p>Im Forum bin ich nicht aktiv, deshalb sollte sich das Problem nicht l&ouml;sen bitte schreiben.</p>';
+                    <p><?php _e('More information is available on my Website:', NCFF_TEXTDOMAIN);?> <a target="_blank" href="<?php echo esc_url(NCFF_PLUGINDATA['PluginURI'])?>"><?php echo esc_html(NCFF_PLUGINDATA['PluginURI'])?></a></p>
 
+
+                    <h2><?php _e('If you could not solve your problem with the above help, write me!', NCFF_TEXTDOMAIN);?></h2>
+                    <p><b>fakturama@neosuniverse.de</b>
+                        <br><?php _e('Note: 1) Exact problem description 2) With screenshot 3)Webshopimport.log by Fakturama', NCFF_TEXTDOMAIN);?>
+                        <br><?php _e('2,3 Please in the E-mail as attachment.', NCFF_TEXTDOMAIN);?></p>
+
+                    <p><?php _e('In the forum I am not active, therefore should not solve the problem please write.', NCFF_TEXTDOMAIN);?></p>
+                    <p><u><?php _e('If you want to help with translation then write me.', NCFF_TEXTDOMAIN);?></u></p>
+                    <?php
                 }
 
 
 
 
-        ?></div><?php
+        ?>
+
+        </div><?php
     }
 
 
     /* functions to andale the options array  */
 
-    private function mnt_get_formatted_page_array() {
+    private function ncff_mnt_get_formatted_page_array() {
         global $suffusion_pages_array;
         if (isset($suffusion_pages_array) && $suffusion_pages_array != null) {
             return $suffusion_pages_array;
@@ -404,7 +405,7 @@ class NeosFaktura_Settings_Page {
         }
     }
 
-    private function mnt_get_category_array() {
+    private function ncff_mnt_get_category_array() {
         global $suffusion_category_array;
         if (isset($suffusion_category_array) && $suffusion_category_array != null) {
             return $suffusion_category_array;
@@ -432,7 +433,7 @@ class NeosFaktura_Settings_Page {
         }
     }
 
-    private function create_opening_tag($value) {
+    private function ncff_create_opening_tag($value) {
         $group_class = "";
         if (isset($value['grouping'])) {
             $group_class = "suf-grouping-rhs";
@@ -458,7 +459,7 @@ class NeosFaktura_Settings_Page {
      * @param $value
      * @return void
      */
-    private function create_closing_tag($value) {
+    private function ncff_create_closing_tag($value) {
         if (isset($value['grouping'])) {
             echo "</div>\n";
         }
@@ -466,10 +467,10 @@ class NeosFaktura_Settings_Page {
         echo "</div>\n";
     }
 
-    private function create_suf_header_3($value) { echo '<h3 class="suf-header-3">'.esc_html($value['name'])."</h3>\n"; }
+    private function ncff_create_suf_header_3($value) { echo '<h3 class="suf-header-3">'.esc_html($value['name'])."</h3>\n"; }
 
     private function create_section_for_text($value) {
-        $this->create_opening_tag($value);
+        $this->ncff_create_opening_tag($value);
         $text = "";
         if (get_option($value['id']) === FALSE) {
             $text = $value['std'];
@@ -479,11 +480,11 @@ class NeosFaktura_Settings_Page {
         }
 
         echo '<input type="text" id="'.esc_attr($value['id']).'" placeholder="enter your title" name="'.esc_attr($value['id']).'" value="'.esc_attr($text).'" />'."\n";
-        $this->create_closing_tag($value);
+        $this->ncff_create_closing_tag($value);
     }
 
-    private function create_section_for_textarea($value) {
-        $this->create_opening_tag($value);
+    private function ncff_create_section_for_textarea($value) {
+        $this->ncff_create_opening_tag($value);
         echo '<textarea name="'.esc_attr($value['id']).'" type="textarea" cols="" rows="">'."\n";
         if ( get_option( $value['id'] ) != "") {
             echo esc_textarea(get_option( $value['id'] ));
@@ -492,12 +493,12 @@ class NeosFaktura_Settings_Page {
             echo esc_textarea($value['std']);
         }
         echo '</textarea>';
-        $this->create_closing_tag($value);
+        $this->ncff_create_closing_tag($value);
     }
 
 
-    private function create_section_for_radio($value) {
-        $this->create_opening_tag($value);
+    private function ncff_create_section_for_radio($value) {
+        $this->ncff_create_opening_tag($value);
         foreach ($value['options'] as $option_value => $option_text) {
             $checked = ' ';
             if (get_option($value['id']) == $option_value) {
@@ -512,13 +513,13 @@ class NeosFaktura_Settings_Page {
             echo '<div class="mnt-radio"><input type="radio" name="'.esc_attr($value['id']).'" value="'.
                 esc_attr($option_value).'" '.$checked."/>".esc_html($option_text)."</div>\n";
         }
-        $this->create_closing_tag($value);
+        $this->ncff_create_closing_tag($value);
     }
 
 
 
-    private function create_section_for_category_select($page_section,$value) {
-        $this->create_opening_tag($value);
+    private function ncff_create_section_for_category_select($page_section,$value) {
+        $this->ncff_create_opening_tag($value);
         $all_categoris='';
        
         #echo '<p><strong>'.$page_section.':</strong></p>';
@@ -550,34 +551,34 @@ class NeosFaktura_Settings_Page {
         }
         echo "</select>\n ";
         //echo '<script>jQuery("#all").val("'.$all_categoris.'")</\script>';
-        $this->create_closing_tag($value);
+        $this->ncff_create_closing_tag($value);
     }
 
 
-    private function create_form($options) {
+    private function ncff_create_form($options) {
         foreach ($options as $value) {
             switch ( $value['type'] ) {
                 case "sub-section-3":
-                    $this->create_suf_header_3($value);
+                    $this->ncff_create_suf_header_3($value);
                     break;
 
                 case "text";
-                    $this->create_section_for_text($value);
+                    $this->ncff_create_section_for_text($value);
                     break;
 
                 case "textarea":
-                    $this->create_section_for_textarea($value);
+                    $this->ncff_create_section_for_textarea($value);
                     break;
 
                 case "radio":
-                    $this->create_section_for_radio($value);
+                    $this->ncff_create_section_for_radio($value);
                     break;
 
                 case "select":
-                    $this->create_section_for_category_select('first section',$value);
+                    $this->ncff_create_section_for_category_select('first section',$value);
                     break;
                 case "select-2":
-                    $this->create_section_for_category_select('second section',$value);
+                    $this->ncff_create_section_for_category_select('second section',$value);
                     break;
             }
         }
