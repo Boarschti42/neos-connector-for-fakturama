@@ -340,7 +340,7 @@ class NeosFaktura_Settings_Page {
                     <p><b><?php _e('Step 1:', NCFF_TEXTDOMAIN);?></b> <?php _e('Insert your username and password into Fakturama', NCFF_TEXTDOMAIN);?> <br><?php _e('File -> Settings -> Webshop', NCFF_TEXTDOMAIN);?></p>
                     <p><b><?php _e('Step 2:', NCFF_TEXTDOMAIN);?></b> <?php _e('Insert the URL below in Fakturama', NCFF_TEXTDOMAIN);?><br><?php _e('File -> Settings -> Webshop -> Webshop URL', NCFF_TEXTDOMAIN);?></p>
 
-                    <b>URL: "<?php echo get_bloginfo('url'); ?>/wp-admin/admin-ajax.php?do=fakturama" <br></b>
+                    <b>URL: "<?php echo get_bloginfo('url'); ?>/wp-json/neos/v2/fakturama?do=fakturama" <br></b>
                     <p><?php _e('That\'s it!', NCFF_TEXTDOMAIN);?></p>
                   
                     <?php #echo '<p>Entwickelt von '.esc_html($plugin_data['AuthorName']).'</p>';?>
@@ -360,13 +360,7 @@ class NeosFaktura_Settings_Page {
 
                     <p><?php _e('More information is available on my Website:', NCFF_TEXTDOMAIN);?> <a target="_blank" href="<?php echo esc_url(NCFF_PLUGINDATA['PluginURI'])?>"><?php echo esc_html(NCFF_PLUGINDATA['PluginURI'])?></a></p>
 
-
-                    <h2><?php _e('If you could not solve your problem with the above help, write me!', NCFF_TEXTDOMAIN);?></h2>
-                    <p><b>fakturama@neosuniverse.de</b>
-                        <br><?php _e('Note: 1) Exact problem description 2) With screenshot 3)Webshopimport.log by Fakturama', NCFF_TEXTDOMAIN);?>
-                        <br><?php _e('2,3 Please in the E-mail as attachment.', NCFF_TEXTDOMAIN);?></p>
-
-                    <p><?php _e('In the forum I am not active, therefore should not solve the problem please write.', NCFF_TEXTDOMAIN);?></p>
+                    <p><?php _e('Write in the fakturama forum, i will see it somehow :)', NCFF_TEXTDOMAIN);?></p>
                     <p><u><?php _e('If you want to help with translation then write me.', NCFF_TEXTDOMAIN);?></u></p>
                     <?php
                 }

@@ -1,10 +1,10 @@
 === Neos Connector for Fakturama ===
-Contributors: neo2oo5
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7B7XZ227HN5GC
+Contributors: neo2oo5, boarschti42
+Donate link: https://www.paypal.com/donate/?hosted_button_id=849ALP7AUZSK4
 Tags: fakturama, faktura, faktura connector, fakturama connector, faktura bridge, fakturama bridge, woocommerce faktura, woocommerce
 Requires at least: 4.0
-Tested up to: 4.8
-Stable tag: 0.0.14
+Tested up to: 6.3.1
+Stable tag: 0.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,18 +15,18 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 **Deutsch:**
 
-Fakturama Connector importiert Produkte und Bestellungen von Woocommerce zu Fakturama.
+Dieses Plugin basiert auf dem NEOS-Connector für Fakturama. Weitere Informationen zum Original-Plugin finden sie auf [www.neosuniverse.de](https://www.neosuniverse.de)
 
-Weitere Informationen auf [www.neosuniverse.de](https://www.neosuniverse.de)
+Fakturama Connector importiert Produkte und Bestellungen von Woocommerce zu Fakturama.
 
 Wenn dir Neos Connector for Fakturama gef&auml;llt und unser Plugin seine Arbeit gut macht, w&auml;re es super wenn du eine Rezension &uuml;ber Neos Connector for Fakturama auf Wordpress.org schreiben w&uuml;rdest. **Danke f&uuml;r deine Unterst&uuml;tzung!**
 
 
 **English:**
 
-Neos Connector for Fakturama imports Products and Orders from Woocommerce to Fakturama.
+This plugin is based on NEOS-Connector for Fakturama. More information about the original is available at [www.neosuniverse.de](https://www.neosuniverse.de)
 
-More information on [www.neosuniverse.de](https://www.neosuniverse.de)
+Neos Connector for Fakturama imports Products and Orders from Woocommerce to Fakturama.
 
 If you like Neos Connector for Fakturama and our Plugin does a good job it would be great if you would write a review about Neos Connector for Fakturama on WordPress.org. **Thank you for your support!**
 
@@ -52,35 +52,11 @@ If you like Neos Connector for Fakturama and our Plugin does a good job it would
 6. Go to the search box and type in "Neos Connector for Fakturama"
 7. Now you should see the Plugin. Klick on install then on activate (same Button)
 
-### 2. FAQ
-
-Bitte schaue auf meiner Webseite vorbei, dort findest du eine: [FAQ](https://www.neosuniverse.de/neos-connector-for-fakturama-faq)
-
-Please check out my Website: [FAQ](https://www.neosuniverse.de/neos-connector-for-fakturama-faq)
-
-### 3. Forum
+### 2. Forum
 
 Du findest auch Hilfe im offiziellen Forum von [Fakturama](http://forum.fakturama.info/index.php)
 
 You can also find help in the official Forum of [Fakturama](http://forum.fakturama.info/index.php)
-
-### 4. Email
-
-Wenn du mit der oben gennanten Hilfe dein Problem nicht l&ouml;sen konntest, schreibe mir!
-
-If you could not solve your problem with the above help, write me!
-
-**Email: fakturama@neosuniverse.de**
-
-## Sonstiges / Others
-
-Wenn du mir beim &Uuml;bersetzen helfen willst dann schreibe mir.
-
-If you want to help with translation then write me.
-
-**Email: fakturama@neosuniverse.de**
-
-
 
 
 == Installation ==
@@ -88,27 +64,21 @@ If you want to help with translation then write me.
 1. Upload the `Neos Connector for Fakturama` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer.
 2. Activate the plugin through the 'Plugins' menu in WordPress or by using the link provided by the plugin installer.
 
-== Screenshots ==
-assets/screenshot-1.png
-assets/screenshot-2.png
-assets/screenshot-3.png
-assets/screenshot-4.png
-
 == Frequently Asked Questions ==
 
-Bitte schaue auf meiner Webseite vorbei, dort findest du eine:
-Please check out my website:
-
-[FAQ](https://www.neosuniverse.de/neos-connector-for-fakturama-faq)
-
+- My Plugin does not work: Check settings in Fakturama. Ensure DEBUG mode is set to off. 
+- Whats the URL to use? https://<url>/wp-json/neos/v2/fakturama
 
 
 == Upgrade Notice ==
-
--
+- 0.1.0: It is required to change connection settings in Fakturama since the API was changed to REST instead of admin-ajax.
 
 
 == Changelog ==
+
+= 0.1.0 =
+- Current version of Fakturama (2.2.0) works with this plugin
+- API changed to Wordpress REST-API
 
 = 0.0.14 =
 -Fix Timezone error
