@@ -3,8 +3,8 @@ Contributors: neo2oo5, boarschti42
 Donate link: https://www.paypal.com/donate/?hosted_button_id=849ALP7AUZSK4
 Tags: fakturama, faktura, faktura connector, fakturama connector, faktura bridge, fakturama bridge, woocommerce faktura, woocommerce
 Requires at least: 4.0
-Tested up to: 6.3.1
-Stable tag: 0.1.0
+Tested up to: 6.8.1
+Stable tag: 0.1.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -75,6 +75,10 @@ You can also find help in the official Forum of [Fakturama](http://forum.faktura
 
 
 == Changelog ==
+
+= 0.1.2 =
+- Fixes to work with latest beta of fakturama
+- Debug output to errorlog removed
 
 = 0.1.0 =
 - Current version of Fakturama (2.2.0) works with this plugin

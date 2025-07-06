@@ -9,6 +9,8 @@ Author URI: https://www.rekn.de
 Min WP Version: 6.2.0
 Max WP Version: 6.3.1
 Text Domain: neosconnectorforfakturama
+Requires Plugins:  woocommerce
+
 */
 /*
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,8 +29,6 @@ class NeosFaktura_FakturamaC {
     }
 
     private function ncff_includes(){
-        error_log("ncff_includes()");
-
         include_once('neosconnectorforfakturama-XMLHelper.php');
         include_once ('neosconnectorforfakturama-XML.php');
 
@@ -41,8 +41,6 @@ class NeosFaktura_FakturamaC {
 
     public function ncff_missing_woocommerce_error_notice()
     {
-        error_log("ncff_missing_woocommerce_error_notice()");
-
         $class = 'notice notice-error';
         $message = __( 'Woocommerce Shop Plugin is missing! Please install first Woocommerce!', NCFF_TEXTDOMAIN );
 
@@ -50,8 +48,6 @@ class NeosFaktura_FakturamaC {
     }
 
     public function ncff_check_woocommerce_installation(){
-        error_log("ncff_check_woocommerce_installation()");
-
         if(is_admin()){
             if ( !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
                 add_action( 'admin_notices', array( $this, 'ncff_missing_woocommerce_error_notice' ) );
@@ -61,8 +57,6 @@ class NeosFaktura_FakturamaC {
     }
 
     private function ncff_defines(){
-        error_log("ncff_defines()");
-
         defined('NCFF_TEXTDOMAIN') or define('NCFF_TEXTDOMAIN', 'neosconnectorforfakturama');
         defined('NCFF_PLUGIN_PATH') or define('NCFF_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
         defined('NCFF_PLUGIN_URL') or define('NCFF_PLUGIN_URL', plugins_url( '/', __FILE__ ));
@@ -74,8 +68,6 @@ class NeosFaktura_FakturamaC {
     }
 
     private function ncff_init(){
-        error_log("ncff_init()");
-
         $this->ncff_defines();
         $this->ncff_includes();
 
@@ -83,8 +75,6 @@ class NeosFaktura_FakturamaC {
     }
 
     public function ncff_admin_init(){
-        error_log("ncff_admin_init()");
-
         $this->ncff_init();
 
         /**
@@ -103,7 +93,6 @@ class NeosFaktura_FakturamaC {
     }
 
     public function ncff_rest_init(){
-        error_log("ncff_rest_init()");
 
         $this->ncff_init();
 
@@ -116,21 +105,15 @@ class NeosFaktura_FakturamaC {
         }
 
         add_action( 'rest_api_init', function () {
-            error_log("rest_api_init()");
-
             register_rest_route( 'neos/v2', '/fakturama', array(
               'methods' => WP_REST_Server::CREATABLE,
               'callback' => array($this, 'ncff_request') ,
               'permission_callback' => '__return_true'
             ) );
           } );
-
-
     }
 
     public function ncff_request( ){ 
-        error_log("ncff_request()");
-
         $params = "";
         if(isset($_POST['action']))
         {
@@ -146,11 +129,10 @@ class NeosFaktura_FakturamaC {
         $creds['user_login'] = $params['username'];
         $creds['user_password'] = $params['password'];
         $creds['remember'] = false;
-        $user = wp_signon( $creds, false );
+        $user = wp_signon( $creds);
         if ( is_wp_error($user) ){
             wp_die($user->get_error_message());
         }
-
         if(NCFF_DEBUG == False) {
             header("Content-type: text/xml");
         }
@@ -188,16 +170,14 @@ class NeosFaktura_FakturamaC {
     }
   
   private function ncff_ValidatingSantizingParams($params){
-    error_log("ncff_ValidatingSantizingParams(): " . var_export($params, true));
-
     $paramsreturn = array();
-    if(isset($params['username']) && validate_username($params['username']))
+    if(isset($params['username']) )
     {
       $paramsreturn['username'] = sanitize_user($params['username']);
     }
     if(isset($params['password']))
     {
-      $paramsreturn['password'] = sanitize_text_field($params['password']);
+      $paramsreturn['password'] = $params['password'];
     }
     if(isset($params['action']) && !preg_match('/[^a-z_]+/', $params['action']))
     {
@@ -212,7 +192,6 @@ class NeosFaktura_FakturamaC {
   }
 
 }
-error_log("running functions");
 
 $plugin = new NeosFaktura_FakturamaC();
 

@@ -12,19 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class NeosFaktura_Notices
 {
-
-
     /**
      * Constructor.
      */
     public function __construct() {
-
         {
             add_action( 'admin_notices', array( $this, 'ncff_review_notice' ) );
             add_action('admin_init', array($this, 'ncff_disable_review_notice'));
         }
-
-
     }
 
 
