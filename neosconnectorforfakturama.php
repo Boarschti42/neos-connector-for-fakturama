@@ -211,7 +211,7 @@ if (!function_exists('neos_plugin_check_for_updates')) {
         }
 
         $cache_key = 'neos_update_' . sha1($plugin_file);
-        //$response = get_transient($cache_key);
+        $response = get_transient($cache_key);
         if (!$response) {
             $response = wp_remote_get($plugin_data['UpdateURI'], [
                 'headers' => ['Accept' => 'application/vnd.github.v3+json']
