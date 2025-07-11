@@ -141,14 +141,12 @@ class NeosFaktura_fakturamaXML
             $id = $this->xml->createAttribute("id");
             $id->value = $product->get_id();
 
+            $image_id  = $product->get_image_id();
+            $image_url = wp_get_attachment_image_url( $image_id, 'medium' );
 
-
-            
             $productXML->appendChild($vatpercent);
             $productXML->appendChild($quantity);
             $productXML->appendChild($id);
-
-
 
             $productXML->appendChild($this->xml->createElement("model", $this->ncff_prepareforXML($product->get_sku())));
             $productXML->appendChild($this->xml->createElement("ean"));
@@ -163,7 +161,7 @@ class NeosFaktura_fakturamaXML
             $shortDesc->appendChild($this->xml->createCDATASection($this->ncff_prepareforXML( $product->get_short_description())));
             $productXML->appendChild($shortDesc);
             // $productXML->appendChild($this->xml->createElement("short_description", $this->ncff_prepareforXML( $product->get_short_description())));
-            $productXML->appendChild($this->xml->createElement("image", "")); //$this->ncff_prepareforXML($image['subfolder']."/".$image['basename'])));
+            $productXML->appendChild($this->xml->createElement("image", $this->ncff_prepareforXML($image_url))); //$this->ncff_prepareforXML($image['subfolder']."/".$image['basename'])));
 
 
             $productsXML->appendChild($productXML);

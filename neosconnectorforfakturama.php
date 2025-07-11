@@ -1,21 +1,23 @@
 <?php
 /*
-Plugin Name: Neos Connector for Fakturama
-Plugin URI: https://www.rekn.de
-Description: Neos Connector for Fakturama importiert Produkte und Bestellungen von Woocommerce zu Fakturama. Forked from Kevin Bonner, Changed for current WooCommerce.
-Version: 0.1.2
-Author: Kevin Bonner, Karsten Röhle
-Author URI: https://www.rekn.de
-Min WP Version: 6.2.0
-Max WP Version: 6.3.1
-Text Domain: neosconnectorforfakturama
-Requires Plugins:  woocommerce
-
+* Plugin Name: Neos Connector for Fakturama
+* Plugin URI: https://github.com/Boarschti42/neos-connector-for-fakturama
+* Update URI:  https://api.github.com/repos/Boarschti42/neos-connector-for-fakturama/releases/latest
+* Description: Neos Connector for Fakturama importiert Produkte und Bestellungen von Woocommerce zu Fakturama. Forked from Kevin Bonner, Changed for current WooCommerce.
+* Version: 0.2.0
+* Author: Kevin Bonner, Karsten Röhle
+* Author URI: https://www.rekn.de
+* Min WP Version: 6.2.0
+* Max WP Version: 6.3.1
+* Text Domain: neosconnectorforfakturama
+* Requires Plugins:  woocommerce
 */
+
 /*
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }*/
+global $wp_filter;
 
 class NeosFaktura_FakturamaC {
 
@@ -25,17 +27,20 @@ class NeosFaktura_FakturamaC {
      *
      * */
     public function __construct(){
-        $this->ncff_rest_init();
     }
 
     private function ncff_includes(){
         include_once('neosconnectorforfakturama-XMLHelper.php');
         include_once ('neosconnectorforfakturama-XML.php');
 
+
         if(is_admin())
         {
-            include_once('neosconnectorforfakturama-admin.php');
-            include_once ('neosconnectorforfakturama-notices.php');
+            require_once('neosconnectorforfakturama-admin.php');
+            require_once('neosconnectorforfakturama-notices.php');
+            $plugin_admin = new NeosFaktura_Settings_Page();
+            add_action( 'admin_menu', array( $plugin_admin, 'ncff_add_plugin_page' ) );
+
         }
     }
 
@@ -71,7 +76,7 @@ class NeosFaktura_FakturamaC {
         $this->ncff_defines();
         $this->ncff_includes();
 
-        load_plugin_textdomain( NCFF_TEXTDOMAIN, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
+        //load_plugin_textdomain( NCFF_TEXTDOMAIN, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
     }
 
     public function ncff_admin_init(){
@@ -193,7 +198,64 @@ class NeosFaktura_FakturamaC {
 
 }
 
+if (!function_exists('neos_plugin_check_for_updates')) {
+    error_log("neos_plugin_check_for_updates called");
+    function neos_plugin_check_for_updates($update, $plugin_data, $plugin_file)
+    {
+        static $response = false;
+        error_log("checking for neos updates..." );
+       
+        // only check for github updates
+        if (empty($plugin_data['UpdateURI']) || !str_contains($plugin_data['UpdateURI'], 'api.github.com')) {
+            return $update;
+        }
+
+        $cache_key = 'neos_update_' . sha1($plugin_file);
+        //$response = get_transient($cache_key);
+        if (!$response) {
+            $response = wp_remote_get($plugin_data['UpdateURI'], [
+                'headers' => ['Accept' => 'application/vnd.github.v3+json']
+            ]);
+            set_transient($cache_key, $response, HOUR_IN_SECONDS * 12);
+        }
+
+        if (is_wp_error($response) || empty($response['body'])) {
+            return $update;
+        }
+
+        $custom_plugins_data = json_decode($response["body"], true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            error_log("JSON Error: " . json_last_error_msg());
+            return $update;
+        } 
+        if (empty($custom_plugins_data['tag_name'] || $custom_plugins_data['zipball_url'])) {
+            return $update;
+        }
+
+        $remote_ver = ltrim($custom_plugins_data['tag_name'], 'v');
+        $zip_url    = $custom_plugins_data['zipball_url'];  
+        $resp = [
+            'slug'        => dirname($plugin_file),
+            'plugin'      => $plugin_file,
+            'version'     => $remote_ver,
+            'new_version' => $remote_ver,
+            'package'     => $zip_url,
+            'tested'      => '6.8.1',
+        ];
+        return $resp;
+        
+        
+
+    }
+
+    add_filter('update_plugins_api.github.com', 'neos_plugin_check_for_updates', 10, 3);
+
+}
+
 $plugin = new NeosFaktura_FakturamaC();
+$plugin->ncff_rest_init();
+
 
 //add_action( 'init', array( NeosFaktura_FakturamaC::get_instance(), 'ncff_admin_init' ));
 //add_action( 'plugins_loaded', array( NeosFaktura_FakturamaC::get_instance(), 'ncff_rest_init' ));
